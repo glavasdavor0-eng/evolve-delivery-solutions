@@ -38,6 +38,9 @@ function Hero() {
             We help eClinical platforms deliver with less risk, better test coverage, and stronger
             quality control — embedded inside your delivery team.
           </p>
+          <p className="mt-6 max-w-2xl text-sm font-normal leading-relaxed text-primary-foreground/60">
+            Built by people who have worked inside eClinical delivery teams.
+          </p>
           <div className="mt-12">
             <a
               href="#contact"
