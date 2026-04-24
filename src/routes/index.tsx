@@ -13,7 +13,7 @@ function Nav() {
     <header className="fixed inset-x-0 top-0 z-50 bg-primary">
       <div className="container-evolve flex h-16 items-center justify-between">
         <a href="#top" className="flex items-center" aria-label="EVOLVE home">
-          <img src={logoDark} alt="EVOLVE" className="h-5 w-auto" />
+          <img src={logoDark} alt="EVOLVE" className="h-5 w-auto" style={{ mixBlendMode: "screen" }} />
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -495,7 +495,7 @@ function Footer() {
     <footer className="bg-primary text-primary-foreground">
       <div className="container-evolve py-10">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-          <img src={logoDark} alt="EVOLVE Clinical Solutions" className="h-4 w-auto opacity-90" />
+          <img src={logoDark} alt="EVOLVE Clinical Solutions" className="h-4 w-auto opacity-90" style={{ mixBlendMode: "screen" }} />
           <a
             href="mailto:davor@evolve-clinical.com"
             className="text-sm text-primary-foreground/80 hover:text-primary-foreground"
