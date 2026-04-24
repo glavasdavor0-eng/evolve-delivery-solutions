@@ -72,6 +72,15 @@ function Nav() {
           </div>
 
           <a
+            href="https://blog.evolve-clinical.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-normal text-white transition-colors hover:text-white/70"
+          >
+            Insights
+          </a>
+
+          <a
             href="#contact"
             className="text-sm font-normal text-white transition-colors hover:text-white/70"
           >
@@ -127,6 +136,15 @@ function Nav() {
               </a>
             </div>
             <a
+              href="https://blog.evolve-clinical.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+              className="py-3 text-sm font-normal text-white transition-colors hover:text-white/70"
+            >
+              Insights
+            </a>
+            <a
               href="#contact"
               onClick={closeMenu}
               className="py-3 text-sm font-normal text-white transition-colors hover:text-white/70"
@@ -162,6 +180,26 @@ function Hero() {
             >
               Get in touch
             </a>
+          </div>
+
+          <div className="mt-14 border-t border-white/15 pt-8">
+            <dl className="grid grid-cols-2 gap-y-8 sm:grid-cols-4 sm:divide-x sm:divide-white/15">
+              {[
+                { value: "500+", label: "Studies Supported" },
+                { value: "200+", label: "Years Combined Experience" },
+                { value: "Zero", label: "UAT Defect Rate" },
+                { value: "<1hr", label: "Average Response Time" },
+              ].map((s, i) => (
+                <div key={s.label} className={i === 0 ? "sm:pl-0 sm:pr-6" : "sm:px-6"}>
+                  <dt className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
+                    {s.value}
+                  </dt>
+                  <dd className="mt-1 text-xs font-normal uppercase tracking-wider text-primary-foreground/60">
+                    {s.label}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </div>
@@ -362,6 +400,54 @@ function Outcomes() {
             <div key={o} className="bg-surface p-8 md:p-10">
               <p className="text-base leading-relaxed text-foreground/85">{o}</p>
             </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Testimonials() {
+  const items = [
+    {
+      quote:
+        "Evolve identified gaps in our test coverage we hadn't seen internally. The UAT ran cleaner than any study we'd done before.",
+      role: "Head of Delivery, eClinical Platform Vendor",
+    },
+    {
+      quote:
+        "Having an embedded resource that understood both the platform and the study requirements from day one made a real difference to our go-live timeline.",
+      role: "VP Operations, eCOA Vendor",
+    },
+  ];
+  return (
+    <section id="testimonials" style={{ backgroundColor: "#0B1F33" }}>
+      <div className="container-evolve py-24 md:py-32">
+        <p
+          className="section-label"
+          style={{ color: "color-mix(in oklab, white 60%, transparent)" }}
+        >
+          What Clients Say
+        </p>
+        <h2 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight text-white md:text-4xl">
+          Trusted by eClinical delivery teams.
+        </h2>
+
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {items.map((t) => (
+            <figure key={t.role} className="flex flex-col bg-white p-8 md:p-10">
+              <span
+                aria-hidden
+                className="font-serif text-5xl leading-none"
+                style={{ color: "#2F6F8F" }}
+              >
+                “
+              </span>
+              <blockquote className="mt-2 text-base leading-relaxed text-primary md:text-lg">
+                {t.quote}
+              </blockquote>
+              <figcaption className="mt-6 text-sm text-muted-foreground">- {t.role}</figcaption>
+            </figure>
           ))}
         </div>
       </div>
@@ -577,6 +663,7 @@ function Index() {
         <Services />
         <Differentiators />
         <Outcomes />
+        <Testimonials />
         <Clients />
         <Engagement />
         <Contact />
