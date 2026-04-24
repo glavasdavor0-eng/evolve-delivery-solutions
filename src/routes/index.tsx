@@ -13,7 +13,7 @@ function Nav() {
     <header className="fixed inset-x-0 top-0 z-50 bg-primary">
       <div className="container-evolve flex h-16 items-center justify-between">
         <a href="#top" className="flex items-center" aria-label="EVOLVE home">
-          <img src={logoDark} alt="EVOLVE" className="h-5 w-auto" />
+          <img src={logoDark} alt="EVOLVE" className="h-5 w-auto" style={{ mixBlendMode: "screen" }} />
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
