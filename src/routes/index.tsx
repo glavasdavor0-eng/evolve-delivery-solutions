@@ -9,23 +9,8 @@ export const Route = createFileRoute("/")({
 });
 
 function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled
-          ? "border-b border-white/10 bg-primary/95 backdrop-blur"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 bg-primary">
       <div className="container-evolve flex h-16 items-center justify-between">
         <a href="#top" className="flex items-center" aria-label="EVOLVE home">
           <img src={logoDark} alt="EVOLVE" className="h-5 w-auto" />
