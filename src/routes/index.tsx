@@ -161,7 +161,7 @@ function Nav() {
 function Hero() {
   return (
     <section id="top" className="bg-primary text-primary-foreground">
-      <div className="container-evolve pb-24 pt-28 md:pb-28 md:pt-36">
+      <div className="container-evolve pb-12 pt-28 md:pb-16 md:pt-36">
         <div className="max-w-3xl">
           <h1 className="text-4xl font-semibold leading-[1.1] tracking-tight md:text-6xl">
             Specialized delivery support for eClinical technology vendors.
@@ -266,7 +266,7 @@ const pillars: Pillar[] = [
 function Services() {
   return (
     <section id="services" className="bg-background">
-      <div className="container-evolve py-24 md:py-32">
+      <div className="container-evolve pb-24 pt-16 md:pb-32 md:pt-20">
         <p className="section-label">Services</p>
         <h2 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight md:text-4xl">
           Our work sits between your product, your delivery team, and your client expectations.
@@ -325,7 +325,7 @@ function Services() {
       </div>
 
       <div className="bg-surface">
-        <div className="container-evolve py-12 text-center md:py-16">
+        <div className="container-evolve py-6 text-center md:py-8">
           <p className="section-label">Platform Familiarity</p>
           <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
             Our team has hands-on experience across leading eCOA, ePRO, EDC, and broader eClinical
