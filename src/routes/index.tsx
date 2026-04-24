@@ -495,7 +495,7 @@ function Footer() {
     <footer className="bg-primary text-primary-foreground">
       <div className="container-evolve py-10">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-          <img src={logoDark} alt="EVOLVE Clinical Solutions" className="h-4 w-auto opacity-90" />
+          <img src={logoDark} alt="EVOLVE Clinical Solutions" className="h-4 w-auto opacity-90" style={{ mixBlendMode: "screen" }} />
           <a
             href="mailto:davor@evolve-clinical.com"
             className="text-sm text-primary-foreground/80 hover:text-primary-foreground"
