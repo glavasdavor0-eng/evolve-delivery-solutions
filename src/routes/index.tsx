@@ -229,9 +229,9 @@ const pillars: Pillar[] = [
       "Optional execution support including defect verification and retesting",
     ],
     engagementModels: [
-      "Core – UAT Scripts",
-      "Study-Ready – Full Coverage (Recommended)",
-      "Execution Support – Optional Add-on",
+      "Core - UAT Scripts",
+      "Study-Ready - Full Coverage (Recommended)",
+      "Execution Support - Optional Add-on",
     ],
   },
   {
@@ -308,7 +308,7 @@ function Services() {
                   </p>
                   <ul className="mt-3 space-y-1.5 pl-1 text-sm text-primary/80">
                     {p.engagementModels.map((it) => (
-                      <li key={it}>· {it}</li>
+                      <li key={it}>{it}</li>
                     ))}
                   </ul>
                 </div>
