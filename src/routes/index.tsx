@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
-// Note: file naming is reversed — these point to the visually correct asset.
+// Note: file naming is reversed - these point to the visually correct asset.
 import logoLight from "@/assets/evolve-logo-dark.png"; // navy text on white bg
 import logoDark from "@/assets/evolve-logo-light.png"; // white text on dark bg
 
@@ -9,10 +11,13 @@ export const Route = createFileRoute("/")({
 });
 
 function Nav() {
+  const [open, setOpen] = useState(false);
+  const closeMenu = () => setOpen(false);
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-primary">
       <div className="container-evolve flex h-16 items-center justify-between">
-        <a href="#top" className="flex items-center" aria-label="EVOLVE home">
+        <a href="#top" className="flex items-center" aria-label="EVOLVE home" onClick={closeMenu}>
           <img src={logoDark} alt="EVOLVE" className="h-5 w-auto" />
         </a>
 
@@ -73,7 +78,64 @@ function Nav() {
             Contact
           </a>
         </nav>
+
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className="inline-flex items-center justify-center p-2 text-white md:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+        >
+          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </div>
+
+      {open && (
+        <div className="border-t border-white/10 bg-primary md:hidden">
+          <nav className="container-evolve flex flex-col py-3">
+            <a
+              href="#top"
+              onClick={closeMenu}
+              className="py-3 text-sm font-normal text-white transition-colors hover:text-white/70"
+            >
+              Home
+            </a>
+            <div className="py-2">
+              <p className="py-1 text-xs font-medium uppercase tracking-wider text-white/50">
+                Services
+              </p>
+              <a
+                href="#service-uat"
+                onClick={closeMenu}
+                className="block py-2 pl-3 text-sm text-white transition-colors hover:text-white/70"
+              >
+                UAT &amp; Testing
+              </a>
+              <a
+                href="#service-impl"
+                onClick={closeMenu}
+                className="block py-2 pl-3 text-sm text-white transition-colors hover:text-white/70"
+              >
+                Implementation Support
+              </a>
+              <a
+                href="#service-resourcing"
+                onClick={closeMenu}
+                className="block py-2 pl-3 text-sm text-white transition-colors hover:text-white/70"
+              >
+                Embedded Resourcing
+              </a>
+            </div>
+            <a
+              href="#contact"
+              onClick={closeMenu}
+              className="py-3 text-sm font-normal text-white transition-colors hover:text-white/70"
+            >
+              Contact
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
@@ -88,7 +150,7 @@ function Hero() {
           </h1>
           <p className="mt-8 max-w-2xl text-lg font-normal leading-relaxed text-primary-foreground/75 md:text-xl">
             We help eClinical platforms deliver with less risk, better test coverage, and stronger
-            quality control — embedded inside your delivery team.
+            quality control - embedded inside your delivery team.
           </p>
           <p className="mt-6 max-w-2xl text-sm font-normal leading-relaxed text-primary-foreground/60">
             Built by people who have worked inside eClinical delivery teams.
@@ -321,7 +383,7 @@ function Clients() {
           We work with eClinical technology vendors, CROs, and sponsors.
         </h2>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-          Our core experience is vendor-side — working inside delivery and implementation teams.
+          Our core experience is vendor-side - working inside delivery and implementation teams.
           But the same capabilities apply wherever eClinical quality and delivery risk needs to be
           managed.
         </p>
@@ -475,7 +537,7 @@ function ClosingBand() {
     <div className="bg-primary text-primary-foreground">
       <div className="container-evolve py-6">
         <p className="text-center text-sm text-primary-foreground/70">
-          EVOLVE Clinical Solutions — specialized eClinical delivery support based on real delivery
+          EVOLVE Clinical Solutions - specialized eClinical delivery support based on real delivery
           experience, not theory.
         </p>
       </div>
