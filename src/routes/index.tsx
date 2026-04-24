@@ -88,7 +88,7 @@ function Nav() {
 function Hero() {
   return (
     <section id="top" className="bg-primary text-primary-foreground">
-      <div className="container-evolve pb-24 pt-56 md:pb-28 md:pt-64">
+      <div className="container-evolve pb-24 pt-28 md:pb-28 md:pt-36">
         <div className="max-w-3xl">
           <h1 className="text-4xl font-semibold leading-[1.1] tracking-tight md:text-6xl">
             Specialized delivery support for eClinical technology vendors.
@@ -288,9 +288,9 @@ function Differentiators() {
 
 const outcomes = [
   "Reduced pre-UAT defect leakage on a complex eCOA study through structured script coverage aligned to protocol requirements.",
-  "Supported go-live readiness for a global Phase III study, delivering full traceability across workflows, forms, and participant-facing logic.",
+  "Supported full study configuration and go-live readiness for a global Phase III study, ensuring alignment between protocol requirements and platform setup across workflows and participant-facing logic.",
   "Embedded QA resource operational within one week, contributing directly to UAT execution with minimal ramp-up time or oversight required.",
-  "Identified critical coverage gaps in an existing test script set prior to UAT, preventing client-facing defects during a high-visibility study launch.",
+  "Identified misalignment between protocol specifications and platform configuration during study build review, preventing downstream issues before UAT commenced.",
 ];
 
 function Outcomes() {
@@ -309,10 +309,6 @@ function Outcomes() {
             </div>
           ))}
         </div>
-
-        <p className="mt-8 text-sm italic text-muted-foreground">
-          Outcomes based on delivered engagements. Client details available on request.
-        </p>
       </div>
     </section>
   );
@@ -364,7 +360,7 @@ function Engagement() {
     },
     {
       title: "Flexible resourcing aligned to delivery peaks",
-      body: "Scale up during high-volume periods, scale back when not needed.",
+      body: "Scale up during high-volume periods, scale back as priorities shift.",
     },
   ];
   return (
