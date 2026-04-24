@@ -314,31 +314,89 @@ function Contact() {
         </h2>
 
         <div className="mt-12 max-w-xl">
-          <dl className="grid grid-cols-[auto_1fr] gap-x-8 gap-y-3 text-base">
-            <dt className="text-muted-foreground">Name</dt>
-            <dd className="text-foreground">Davor Glavas</dd>
-            <dt className="text-muted-foreground">Email</dt>
-            <dd>
-              <a
-                href="mailto:davor@evolve-clinical.com"
-                className="text-foreground underline-offset-4 hover:text-accent hover:underline"
-              >
-                davor@evolve-clinical.com
-              </a>
-            </dd>
-          </dl>
+          <p className="text-xs font-medium uppercase tracking-wider text-foreground/70">
+            Davor Glavas
+          </p>
 
-          <div className="mt-10">
+          <form
+            action="https://formspree.io/f/REPLACE_WITH_ID"
+            method="POST"
+            className="mt-5 space-y-4"
+          >
+            <div>
+              <label htmlFor="name" className="sr-only">
+                Name
+              </label>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                required
+                placeholder="Name"
+                className="flex h-11 w-full rounded-md border-0 bg-surface px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="sr-only">
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                required
+                placeholder="Email"
+                className="flex h-11 w-full rounded-md border-0 bg-surface px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent"
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="sr-only">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows={4}
+                placeholder="Message"
+                className="flex w-full rounded-md border-0 bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent"
+              />
+            </div>
+
+            <div className="pt-2">
+              <button
+                type="submit"
+                className="inline-flex items-center justify-center bg-accent px-7 py-3.5 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90"
+              >
+                Send message
+              </button>
+            </div>
+          </form>
+
+          <div className="mt-6">
             <a
-              href="mailto:davor@evolve-clinical.com"
-              className="inline-flex items-center justify-center bg-accent px-7 py-3.5 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90"
+              href="/capabilities.pdf"
+              className="text-sm text-accent underline-offset-4 hover:underline"
             >
-              Send an email
+              Download our capabilities sheet →
             </a>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function ClosingBand() {
+  return (
+    <div className="bg-primary text-primary-foreground">
+      <div className="container-evolve py-6">
+        <p className="text-center text-sm text-primary-foreground/70">
+          EVOLVE Clinical Solutions — specialized eClinical delivery support based on real delivery
+          experience, not theory.
+        </p>
+      </div>
+    </div>
   );
 }
 
