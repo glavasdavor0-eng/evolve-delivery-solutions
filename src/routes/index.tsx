@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logoLight from "@/assets/evolve-logo-light.png"; // navy text on white
-import logoDark from "@/assets/evolve-logo-dark.png"; // white text on navy
+// Note: file naming is reversed — these point to the visually correct asset.
+import logoLight from "@/assets/evolve-logo-dark.png"; // navy text on white bg
+import logoDark from "@/assets/evolve-logo-light.png"; // white text on dark bg
 
 export const Route = createFileRoute("/")({
   component: Index,
