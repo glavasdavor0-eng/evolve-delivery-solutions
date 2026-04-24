@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+
 // Note: file naming is reversed — these point to the visually correct asset.
 import logoLight from "@/assets/evolve-logo-dark.png"; // navy text on white bg
 import logoDark from "@/assets/evolve-logo-light.png"; // white text on dark bg
