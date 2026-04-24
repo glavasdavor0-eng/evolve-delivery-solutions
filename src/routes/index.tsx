@@ -433,6 +433,7 @@ function Index() {
         <Engagement />
         <Contact />
       </main>
+      <ClosingBand />
       <Footer />
     </div>
   );
