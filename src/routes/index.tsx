@@ -161,6 +161,24 @@ function Services() {
             </article>
           ))}
         </div>
+
+        <div className="mt-12">
+          <p className="section-label">UAT Engagement Models</p>
+          <ul className="mt-5 flex flex-wrap gap-3">
+            {[
+              "Core — UAT Scripts",
+              "Study-Ready — Full Coverage (Recommended)",
+              "Execution Support — Optional Add-on",
+            ].map((it) => (
+              <li
+                key={it}
+                className="rounded-full border border-primary/30 px-4 py-2 text-sm text-primary"
+              >
+                {it}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
