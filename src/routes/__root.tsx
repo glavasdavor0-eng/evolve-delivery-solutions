@@ -47,6 +47,13 @@ export const Route = createRootRoute({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { property: "og:title", content: "EVOLVE Clinical Solutions — Specialized eClinical Delivery Support" },
+      { name: "twitter:title", content: "EVOLVE Clinical Solutions — Specialized eClinical Delivery Support" },
+      { name: "description", content: "Professional single-page website for EVOLVE Clinical Solutions, showcasing services." },
+      { property: "og:description", content: "Professional single-page website for EVOLVE Clinical Solutions, showcasing services." },
+      { name: "twitter:description", content: "Professional single-page website for EVOLVE Clinical Solutions, showcasing services." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d9e8af75-3660-434a-8f74-699c2ecdcfa5/id-preview-e241fb28--6b28ea75-cfa6-4cc6-bdec-5c4346d5a812.lovable.app-1777044874214.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d9e8af75-3660-434a-8f74-699c2ecdcfa5/id-preview-e241fb28--6b28ea75-cfa6-4cc6-bdec-5c4346d5a812.lovable.app-1777044874214.png" },
     ],
     links: [
       {
