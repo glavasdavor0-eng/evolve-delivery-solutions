@@ -72,14 +72,6 @@ const pillars: Pillar[] = [
       "Review and optimization of existing test scripts",
       "Optional execution support including defect verification and retesting",
     ],
-    footer: {
-      label: "UAT Engagement Models",
-      items: [
-        "Core — UAT Scripts",
-        "Study-Ready — Full Coverage (Recommended)",
-        "Execution Support — Optional Add-on",
-      ],
-    },
   },
   {
     n: "02",
