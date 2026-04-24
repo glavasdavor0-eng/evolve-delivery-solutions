@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 // Note: file naming is reversed — these point to the visually correct asset.
 import logoLight from "@/assets/evolve-logo-dark.png"; // navy text on white bg
 import logoDark from "@/assets/evolve-logo-light.png"; // white text on dark bg
@@ -8,15 +9,30 @@ export const Route = createFileRoute("/")({
 });
 
 function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        scrolled
+          ? "border-b border-white/10 bg-primary/95 backdrop-blur"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
       <div className="container-evolve flex h-16 items-center justify-between">
         <a href="#top" className="flex items-center" aria-label="EVOLVE home">
-          <img src={logoLight} alt="EVOLVE" className="h-5 w-auto" />
+          <img src={logoDark} alt="EVOLVE" className="h-5 w-auto" />
         </a>
         <a
           href="#contact"
-          className="text-sm font-medium text-foreground transition-colors hover:text-accent"
+          className="text-sm font-medium text-white/90 transition-colors hover:text-white"
         >
           Get in touch
         </a>
@@ -28,7 +44,7 @@ function Nav() {
 function Hero() {
   return (
     <section id="top" className="bg-primary text-primary-foreground">
-      <div className="container-evolve pb-28 pt-40 md:pb-40 md:pt-48">
+      <div className="container-evolve pb-44 pt-56 md:pb-56 md:pt-64">
         <div className="max-w-3xl">
           <h1 className="text-4xl font-semibold leading-[1.1] tracking-tight md:text-6xl">
             Specialized delivery support for eClinical technology vendors.
@@ -51,26 +67,57 @@ function Hero() {
   );
 }
 
-const services = [
+type Pillar = {
+  n: string;
+  title: string;
+  points: string[];
+  footer?: { label: string; items: string[] } | { note: string };
+};
+
+const pillars: Pillar[] = [
   {
+    n: "01",
     title: "UAT Design & Support",
-    body: "Test script development aligned to protocol and functional specs. Full study coverage, structured traceability, optional execution support.",
+    points: [
+      "Test script development aligned to protocol and functional specs",
+      "Full study coverage and structured traceability",
+      "Review and optimization of existing test scripts",
+      "Optional execution support including defect verification and retesting",
+    ],
+    footer: {
+      label: "UAT Engagement Models",
+      items: [
+        "Core — UAT Scripts",
+        "Study-Ready — Full Coverage (Recommended)",
+        "Execution Support — Optional Add-on",
+      ],
+    },
   },
   {
-    title: "Test Quality Oversight",
-    body: "An oversight layer on top of your QA process. We identify gaps, surface risks, and deliver structured reporting before issues reach clients.",
+    n: "02",
+    title: "Implementation & Configuration Support",
+    points: [
+      "Study configuration and platform implementation support",
+      "Translation of protocol requirements into system configuration",
+      "Setup of workflows, forms, schedules, and participant-facing logic",
+      "Review and validation of study builds prior to UAT",
+      "Pre-UAT quality control and spec alignment checks",
+    ],
   },
   {
-    title: "Functional Testing & Validation",
-    body: "Pre-UAT quality control, spec alignment checks, and system behavior validation across complex study workflows.",
-  },
-  {
-    title: "Configuration & Study Build Support",
-    body: "Hands-on support ensuring alignment between specification and platform configuration throughout the build process.",
-  },
-  {
+    n: "03",
     title: "Embedded Delivery Resourcing",
-    body: "Experienced QE, PC, and implementation profiles that plug into your team and contribute from day one.",
+    points: [
+      "Project Managers (PM)",
+      "Quality Assurance (QA) Specialists",
+      "Study Designers / Study Builders",
+      "eClinical Implementation Specialists",
+      "Developers / Technical Configuration Support",
+      "Project Coordinators (PC) and operational roles",
+    ],
+    footer: {
+      note: "Flexible engagement: fractional or dedicated, project-based or ongoing.",
+    },
   },
 ];
 
@@ -83,16 +130,54 @@ function Services() {
           Our work sits between your product, your delivery team, and your client expectations.
         </h2>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2">
-          {services.map((s, i) => (
+        <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-3">
+          {pillars.map((p) => (
             <article
-              key={s.title}
-              className={`bg-surface p-8 md:p-10 ${
-                i === services.length - 1 ? "md:col-span-2" : ""
-              }`}
+              key={p.title}
+              className="flex flex-col bg-surface p-8 md:p-10"
             >
-              <h3 className="text-xl font-semibold text-foreground">{s.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-muted-foreground">{s.body}</p>
+              <span className="text-sm font-medium text-accent">{p.n}</span>
+              <h3 className="mt-3 text-xl font-semibold text-foreground">{p.title}</h3>
+
+              {p.title === "Embedded Delivery Resourcing" && (
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  Experienced profiles that integrate into your delivery team from day one:
+                </p>
+              )}
+
+              <ul className="mt-5 space-y-2.5">
+                {p.points.map((pt) => (
+                  <li
+                    key={pt}
+                    className="flex gap-3 text-[0.95rem] leading-relaxed text-muted-foreground"
+                  >
+                    <span
+                      aria-hidden
+                      className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full bg-accent"
+                    />
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {p.footer && "label" in p.footer && (
+                <div className="mt-6 border-t border-border pt-5">
+                  <p className="text-xs font-medium uppercase tracking-wider text-foreground/70">
+                    {p.footer.label}
+                  </p>
+                  <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
+                    {p.footer.items.map((it) => (
+                      <li key={it}>· {it}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {p.footer && "note" in p.footer && (
+                <p className="mt-6 border-t border-border pt-5 text-sm italic leading-relaxed text-muted-foreground">
+                  {p.footer.note}
+                </p>
+              )}
             </article>
           ))}
         </div>
@@ -146,19 +231,20 @@ function Differentiators() {
 function Clients() {
   const tags = [
     "eCOA, ePRO & clinical platform vendors",
-    "Heads of Delivery and Operations",
-    "Product and Engineering leaders",
+    "CROs managing eClinical implementation",
+    "Sponsors with complex study delivery needs",
   ];
   return (
     <section id="clients" className="bg-background">
       <div className="container-evolve py-24 md:py-32">
         <p className="section-label">Our Clients</p>
         <h2 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight md:text-4xl">
-          We work exclusively with eClinical technology vendors.
+          We work with eClinical technology vendors, CROs, and sponsors.
         </h2>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-          Not sponsors. Not CROs. We partner with the companies building and delivering eClinical
-          platforms — and the teams responsible for quality and implementation.
+          Our core experience is vendor-side — working inside delivery and implementation teams.
+          But the same capabilities apply wherever eClinical quality and delivery risk needs to be
+          managed.
         </p>
 
         <ul className="mt-10 flex flex-wrap gap-3">
@@ -178,9 +264,18 @@ function Clients() {
 
 function Engagement() {
   const items = [
-    "Project-based scoped support",
-    "Fractional or dedicated embedded resources",
-    "Flexible resourcing aligned to delivery peaks and study timelines",
+    {
+      title: "Project-based scoped support",
+      body: "Defined scope, clear deliverables, fixed engagement.",
+    },
+    {
+      title: "Fractional or dedicated embedded resources",
+      body: "We become part of your team for as long as you need.",
+    },
+    {
+      title: "Flexible resourcing aligned to delivery peaks",
+      body: "Scale up during high-volume periods, scale back when not needed.",
+    },
   ];
   return (
     <section id="engagement" className="bg-primary text-primary-foreground">
@@ -195,17 +290,17 @@ function Engagement() {
           Flexible by design. Structured where it matters.
         </h2>
 
-        <ul className="mt-12 max-w-2xl space-y-5">
+        <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
           {items.map((i) => (
-            <li key={i} className="flex items-start gap-4">
-              <span
-                aria-hidden
-                className="mt-3 inline-block h-1.5 w-6 flex-shrink-0 bg-accent"
-              />
-              <span className="text-lg text-primary-foreground/90">{i}</span>
-            </li>
+            <div key={i.title} className="border-t border-white/15 pt-6">
+              <span aria-hidden className="inline-block h-1 w-8 bg-accent" />
+              <h3 className="mt-4 text-lg font-semibold text-primary-foreground">{i.title}</h3>
+              <p className="mt-2 text-base leading-relaxed text-primary-foreground/70">
+                {i.body}
+              </p>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
