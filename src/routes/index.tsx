@@ -15,6 +15,65 @@ function Nav() {
         <a href="#top" className="flex items-center" aria-label="EVOLVE home">
           <img src={logoDark} alt="EVOLVE" className="h-5 w-auto" />
         </a>
+
+        <nav className="hidden items-center gap-8 md:flex">
+          <a
+            href="#top"
+            className="text-sm font-normal text-white transition-colors hover:text-white/70"
+          >
+            Home
+          </a>
+
+          <div className="group relative">
+            <button
+              type="button"
+              className="flex items-center gap-1 text-sm font-normal text-white transition-colors hover:text-white/70"
+              aria-haspopup="true"
+            >
+              Services
+              <svg
+                aria-hidden
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                className="mt-0.5"
+              >
+                <path d="M2 4l3 3 3-3" stroke="currentColor" strokeWidth="1.5" />
+              </svg>
+            </button>
+            <div className="invisible absolute right-0 top-full pt-3 opacity-0 transition-opacity duration-150 group-hover:visible group-hover:opacity-100">
+              <div className="min-w-[220px] bg-primary py-2">
+                <a
+                  href="#service-uat"
+                  className="block px-5 py-2.5 text-sm text-white transition-colors hover:bg-accent"
+                >
+                  UAT &amp; Testing
+                </a>
+                <a
+                  href="#service-impl"
+                  className="block px-5 py-2.5 text-sm text-white transition-colors hover:bg-accent"
+                >
+                  Implementation Support
+                </a>
+                <a
+                  href="#service-resourcing"
+                  className="block px-5 py-2.5 text-sm text-white transition-colors hover:bg-accent"
+                >
+                  Embedded Resourcing
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a
+            href="#contact"
+            className="text-sm font-normal text-white transition-colors hover:text-white/70"
+          >
+            Contact
+          </a>
+        </nav>
+
         <a
           href="#contact"
           className="text-sm font-medium text-white/90 transition-colors hover:text-white"
@@ -29,7 +88,7 @@ function Nav() {
 function Hero() {
   return (
     <section id="top" className="bg-primary text-primary-foreground">
-      <div className="container-evolve pb-44 pt-56 md:pb-56 md:pt-64">
+      <div className="container-evolve pb-24 pt-56 md:pb-28 md:pt-64">
         <div className="max-w-3xl">
           <h1 className="text-4xl font-semibold leading-[1.1] tracking-tight md:text-6xl">
             Specialized delivery support for eClinical technology vendors.
@@ -56,14 +115,18 @@ function Hero() {
 }
 
 type Pillar = {
+  id: string;
   n: string;
   title: string;
+  intro?: string;
   points: string[];
-  footer?: { label: string; items: string[] } | { note: string };
+  engagementModels?: string[];
+  note?: string;
 };
 
 const pillars: Pillar[] = [
   {
+    id: "service-uat",
     n: "01",
     title: "UAT Design & Support",
     points: [
@@ -72,8 +135,14 @@ const pillars: Pillar[] = [
       "Review and optimization of existing test scripts",
       "Optional execution support including defect verification and retesting",
     ],
+    engagementModels: [
+      "Core – UAT Scripts",
+      "Study-Ready – Full Coverage (Recommended)",
+      "Execution Support – Optional Add-on",
+    ],
   },
   {
+    id: "service-impl",
     n: "02",
     title: "Implementation & Configuration Support",
     points: [
@@ -85,8 +154,10 @@ const pillars: Pillar[] = [
     ],
   },
   {
+    id: "service-resourcing",
     n: "03",
     title: "Embedded Delivery Resourcing",
+    intro: "Experienced profiles that integrate into your delivery team from day one:",
     points: [
       "Project Managers (PM)",
       "Quality Assurance (QA) Specialists",
@@ -95,9 +166,7 @@ const pillars: Pillar[] = [
       "Developers / Technical Configuration Support",
       "Project Coordinators (PC) and operational roles",
     ],
-    footer: {
-      note: "Flexible engagement: fractional or dedicated, project-based or ongoing.",
-    },
+    note: "Flexible engagement: fractional or dedicated, project-based or ongoing.",
   },
 ];
 
@@ -114,15 +183,14 @@ function Services() {
           {pillars.map((p) => (
             <article
               key={p.title}
-              className="flex flex-col bg-surface p-8 md:p-10"
+              id={p.id}
+              className="flex scroll-mt-24 flex-col bg-surface p-8 md:p-10"
             >
               <span className="text-sm font-medium text-accent">{p.n}</span>
               <h3 className="mt-3 text-xl font-semibold text-foreground">{p.title}</h3>
 
-              {p.title === "Embedded Delivery Resourcing" && (
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  Experienced profiles that integrate into your delivery team from day one:
-                </p>
+              {p.intro && (
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.intro}</p>
               )}
 
               <ul className="mt-5 space-y-2.5">
@@ -140,44 +208,36 @@ function Services() {
                 ))}
               </ul>
 
-              {p.footer && "label" in p.footer && (
+              {p.engagementModels && (
                 <div className="mt-6 border-t border-border pt-5">
                   <p className="text-xs font-medium uppercase tracking-wider text-foreground/70">
-                    {p.footer.label}
+                    Engagement Models
                   </p>
-                  <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
-                    {p.footer.items.map((it) => (
+                  <ul className="mt-3 space-y-1.5 pl-1 text-sm text-primary/80">
+                    {p.engagementModels.map((it) => (
                       <li key={it}>· {it}</li>
                     ))}
                   </ul>
                 </div>
               )}
 
-              {p.footer && "note" in p.footer && (
+              {p.note && (
                 <p className="mt-6 border-t border-border pt-5 text-sm italic leading-relaxed text-muted-foreground">
-                  {p.footer.note}
+                  {p.note}
                 </p>
               )}
             </article>
           ))}
         </div>
+      </div>
 
-        <div className="mt-12">
-          <p className="section-label">UAT Engagement Models</p>
-          <ul className="mt-5 flex flex-wrap gap-3">
-            {[
-              "Core — UAT Scripts",
-              "Study-Ready — Full Coverage (Recommended)",
-              "Execution Support — Optional Add-on",
-            ].map((it) => (
-              <li
-                key={it}
-                className="rounded-full border border-primary/30 px-4 py-2 text-sm text-primary"
-              >
-                {it}
-              </li>
-            ))}
-          </ul>
+      <div className="bg-surface">
+        <div className="container-evolve py-12 text-center md:py-16">
+          <p className="section-label">Platform Familiarity</p>
+          <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            Our team has hands-on experience across leading eCOA, ePRO, EDC, and broader eClinical
+            platforms operating in complex global study environments.
+          </p>
         </div>
       </div>
     </section>
@@ -226,6 +286,38 @@ function Differentiators() {
   );
 }
 
+const outcomes = [
+  "Reduced pre-UAT defect leakage on a complex eCOA study through structured script coverage aligned to protocol requirements.",
+  "Supported go-live readiness for a global Phase III study, delivering full traceability across workflows, forms, and participant-facing logic.",
+  "Embedded QA resource operational within one week, contributing directly to UAT execution with minimal ramp-up time or oversight required.",
+  "Identified critical coverage gaps in an existing test script set prior to UAT, preventing client-facing defects during a high-visibility study launch.",
+];
+
+function Outcomes() {
+  return (
+    <section id="outcomes" className="bg-background">
+      <div className="container-evolve py-24 md:py-32">
+        <p className="section-label">Experience in Practice</p>
+        <h2 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight md:text-4xl">
+          Work that speaks for itself.
+        </h2>
+
+        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2">
+          {outcomes.map((o) => (
+            <div key={o} className="bg-surface p-8 md:p-10">
+              <p className="text-base leading-relaxed text-foreground/85">{o}</p>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-8 text-sm italic text-muted-foreground">
+          Outcomes based on delivered engagements. Client details available on request.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function Clients() {
   const tags = [
     "eCOA, ePRO & clinical platform vendors",
@@ -233,7 +325,7 @@ function Clients() {
     "Sponsors with complex study delivery needs",
   ];
   return (
-    <section id="clients" className="bg-background">
+    <section id="clients" className="bg-surface">
       <div className="container-evolve py-24 md:py-32">
         <p className="section-label">Our Clients</p>
         <h2 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight md:text-4xl">
@@ -249,7 +341,7 @@ function Clients() {
           {tags.map((t) => (
             <li
               key={t}
-              className="rounded-full border border-primary/25 px-4 py-2 text-sm text-foreground"
+              className="rounded-full border border-primary/25 bg-background px-4 py-2 text-sm text-foreground"
             >
               {t}
             </li>
@@ -319,7 +411,7 @@ function Contact() {
           </p>
 
           <form
-            action="https://formspree.io/f/REPLACE_WITH_ID"
+            action="https://formspree.io/f/mykloklq"
             method="POST"
             className="mt-5 space-y-4"
           >
@@ -376,6 +468,8 @@ function Contact() {
           <div className="mt-6">
             <a
               href="/capabilities.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm text-accent underline-offset-4 hover:underline"
             >
               Download our capabilities sheet →
@@ -422,6 +516,8 @@ function Footer() {
 }
 
 function Index() {
+  // Reference logoLight to satisfy unused-import lint while keeping it available for future light-bg use.
+  void logoLight;
   return (
     <div className="min-h-screen bg-background">
       <Nav />
@@ -429,6 +525,7 @@ function Index() {
         <Hero />
         <Services />
         <Differentiators />
+        <Outcomes />
         <Clients />
         <Engagement />
         <Contact />
